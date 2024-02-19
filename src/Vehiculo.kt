@@ -11,25 +11,28 @@ abstract class Vehiculo (val marca: String, val modelo: String, val capacidadCom
         require(kilometrosActuales >= 0) {"Los kilométros actuales no pueden ser menor a 0Km"}
     }
     open fun calcularAutonomia(): Int{
-        return (combustibleActual*10).roundToInt()
+        return redondear(combustibleActual*10)
     }
-    fun realizaViaje(distancia: Int):Int {
-        var distanciaRestante: Int = 0
-        if (calcularAutonomia() > distancia){
-            if ((calcularAutonomia() - distancia) > 0){
-                return distanciaRestante
-            }
-            else if ((calcularAutonomia() - distancia) < 0){
-                distanciaRestante =(distancia - calcularAutonomia()).redondear()
-                return distanciaRestante
-            }
+    open fun redondear(num: Float):Int{
+        return  num.roundToInt()
+    }
+    open fun realizaViaje(distancia: Int):Int {
+        val distanciaPosible = combustibleActual*10
+        if (distanciaPosible > distancia){
+            combustibleActual = (distanciaPosible - distancia)/10
+            return redondear(distanciaPosible-distancia)
+
         }
         else{
-            distanciaRestante =(distancia - calcularAutonomia()).redondear()
-            return distanciaRestante
+            combustibleActual = 0.0F
+            return  redondear(distancia - distanciaPosible)
         }
     }
-    fun repostar(cantidad:Float): Float{
+    open fun repostar(cantidad:Float): Float{
+        if (cantidad <= 0.0F || cantidad > capacidadCombustible ) combustibleActual = capacidadCombustible
+
+        if ((cantidad.toString().uppercase()) in ("A".."Z")) combustibleActual = capacidadCombustible
+
         if (combustibleActual + cantidad > capacidadCombustible){
             combustibleActual = capacidadCombustible
             return combustibleActual
