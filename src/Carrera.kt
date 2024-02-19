@@ -62,9 +62,8 @@ class Carrera {
         }
     }
     fun registrarAccion(vehiculo: String, accion: String) {
-        val acciones: MutableList<Pair<String, MutableList<String>>>
         for (participante in participantes) {
-            acciones.add(participante.nombre, mutableListOf<String>("Entra en carrera"))
+            historialAcciones.put(participante.nombre, mutableListOf<String>("Entra en carrera"))
         }
     }
 }
