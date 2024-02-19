@@ -1,6 +1,6 @@
 import kotlin.math.roundToInt
 
-abstract class Vehiculo (val marca: String, val modelo: String, val capacidadCombustible: Float, var combustibleActual: Float, var kilometrosActuales: Int){
+abstract class Vehiculo (val nombre: String, val marca: String, val modelo: String, val capacidadCombustible: Float, var combustibleActual: Float, var kilometrosActuales: Int){
     init {
         require(marca.isNotBlank()) {"El campo de marca no puede estar vacío"}
         marca.replaceFirstChar { it.uppercase() }
@@ -41,6 +41,12 @@ abstract class Vehiculo (val marca: String, val modelo: String, val capacidadCom
             combustibleActual += cantidad
             return combustibleActual
         }
+    }
+    open fun realizarDerrape():Float{
+        return 0.0F
+    }
+    open fun realizarCaballito():Float{
+        return 0.0F
     }
     open fun obtenerInformacion(): String{
         return "$marca $modelo puede recorrer ${calcularAutonomia()}Kms actualmente, ya cuenta con ${kilometrosActuales}Kms recorridos"

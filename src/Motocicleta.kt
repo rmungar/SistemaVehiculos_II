@@ -1,14 +1,14 @@
-class Motocicleta(marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Int, val cilindrada: Int) : Vehiculo(marca,modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
+class Motocicleta(nombre:String, marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Int, val cilindrada: Int) : Vehiculo(nombre, marca,modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
     override fun calcularAutonomia(): Int {
         return redondear(combustibleActual * 20)
     }
     companion object{
-        val kxl:Int = 20
+       const val KxL:Int = 20
     }
     override fun realizaViaje(distancia: Int): Int {
-        val distanciaPosible = combustibleActual*kxl
+        val distanciaPosible = combustibleActual * KxL
         if (distanciaPosible > distancia){
-            combustibleActual = (distanciaPosible - distancia)/kxl
+            combustibleActual = (distanciaPosible - distancia) / KxL
             return redondear(distanciaPosible - distancia)
         }
         else{
@@ -16,7 +16,7 @@ class Motocicleta(marca:String, modelo:String, capacidadCombustible:Float, combu
             return redondear(distancia - distanciaPosible)
         }
     }
-    fun realizaCaballito():Float{
+    override fun realizarCaballito():Float{
         if (combustibleActual - 0.25 > 0.00){
             combustibleActual - 0.25
             return combustibleActual

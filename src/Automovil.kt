@@ -1,6 +1,10 @@
-class Automovil(marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Int, val esElectrico: Boolean):Vehiculo(marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
+class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Int, val esElectrico: Boolean):Vehiculo(nombre, marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
 
     init {
+        require(nombre.isNotBlank())
+        require(marca.isNotBlank())
+        require(modelo.isNotBlank())
+        require(nombre.isNotBlank())
         require(esElectrico || !esElectrico) {"El campo esElectrico ha de ser true o false"}
     }
     companion object{
@@ -15,21 +19,21 @@ class Automovil(marca:String, modelo:String, capacidadCombustible:Float, combust
                 println("Ahora todos tiene el volante a la izquierda")
             }
         }
-        val kxl:Int = 10
+        const val KxL:Int = 10
     }
     override fun calcularAutonomia(): Int {
         if (esElectrico) {
-            return redondear(combustibleActual * kxl-5)
+            return redondear(combustibleActual * (KxL+5))
         }else{
             return super.calcularAutonomia()
         }
     }
 
     override fun realizaViaje(distancia: Int): Int {
-        val distanciaPosible = combustibleActual* kxl
+        val distanciaPosible = combustibleActual* KxL
         if (esElectrico) {
             if (distanciaPosible > distancia) {
-                combustibleActual = ((distanciaPosible - distancia) / (kxl-5))
+                combustibleActual = ((distanciaPosible - distancia) / (KxL+5))
                 kilometrosActuales += distancia
                 return redondear(distanciaPosible - distancia)
 
@@ -41,7 +45,7 @@ class Automovil(marca:String, modelo:String, capacidadCombustible:Float, combust
         }
         else{
             if (distanciaPosible > distancia) {
-                combustibleActual = (distanciaPosible - distancia) / kxl
+                combustibleActual = (distanciaPosible - distancia) / KxL
                 kilometrosActuales += distancia
                 return redondear(distanciaPosible - distancia)
 
@@ -53,7 +57,7 @@ class Automovil(marca:String, modelo:String, capacidadCombustible:Float, combust
         }
     }
 
-    fun realizarDerrape(): Float{
+    override fun realizarDerrape(): Float{
         if (combustibleActual - 0.5 > 0.00){
             combustibleActual - 0.5
             return combustibleActual
