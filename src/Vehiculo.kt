@@ -2,6 +2,7 @@ import kotlin.math.roundToInt
 
 abstract class Vehiculo (val nombre: String, val marca: String, val modelo: String, val capacidadCombustible: Float, var combustibleActual: Float, var kilometrosActuales: Int){
     init {
+        require(comprobarNombreUnico(nombre)) {"El nombre no puede estar repetido"}
         require(marca.isNotBlank()) {"El campo de marca no puede estar vacío"}
         marca.replaceFirstChar { it.uppercase() }
         require(modelo.isNotBlank()) {"Ell campo de modelo no puede estar vacío"}
@@ -10,26 +11,43 @@ abstract class Vehiculo (val nombre: String, val marca: String, val modelo: Stri
         require(combustibleActual >= 0.0) {"El combustible actual no puede ser menor a 0.0L"}
         require(kilometrosActuales >= 0) {"Los kilométros actuales no pueden ser menor a 0Km"}
     }
-    open fun calcularAutonomia(): Int{
-        return redondear(combustibleActual*10)
+    companion object{
+        val nombres: MutableList<String> = mutableListOf()
+        fun comprobarNombreUnico(nombre: String):Boolean{
+            if(nombres.contains(nombre)) {
+                return false
+            }
+            else{
+                nombres.add(nombre)
+                return true
+            }
+        }
+        const val KILOMETROS_POR_LITRO:Int = 10
+        const val KILOMETROS_POR_LITRO_HIBRIDO: Int = 15
+        const val KILOMETROS_POR_LITRO_MOTOS:Int = 20
+    }
+    open fun calcularAutonomia(): Float{
+        return combustibleActual* KILOMETROS_POR_LITRO
     }
     open fun redondear(num: Float):Int{
         return  num.roundToInt()
     }
-    open fun realizaViaje(distancia: Int):Int {
-        val distanciaPosible = combustibleActual*10
+    open fun realizaViaje(distancia: Int):Float {
+        val distanciaPosible = calcularAutonomia()
         if (distanciaPosible > distancia){
-            combustibleActual = (distanciaPosible - distancia)/10
-            return redondear(distanciaPosible-distancia)
+            combustibleActual = (distanciaPosible - distancia)/ KILOMETROS_POR_LITRO
+            kilometrosActuales += distancia
+            return distancia.toFloat()
 
         }
         else{
             combustibleActual = 0.0F
-            return  redondear(distancia - distanciaPosible)
+            kilometrosActuales += distancia
+            return  distancia - distanciaPosible
         }
     }
-    open fun repostar(cantidad:Float): Float{
-        if (cantidad <= 0.0F || cantidad > capacidadCombustible ) combustibleActual = capacidadCombustible
+    open fun repostar(cantidad:Float = 0.0F): Float{
+        if (cantidad <= 0.0F) combustibleActual = capacidadCombustible
 
         if ((cantidad.toString().uppercase()) in ("A".."Z")) combustibleActual = capacidadCombustible
 

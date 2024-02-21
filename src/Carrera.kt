@@ -1,36 +1,71 @@
 import kotlin.random.Random
 
-class Carrera {
-        val nombreCarrera = "Carrera"
-        val DistanciaTotal: Int = 1000
-        val participantes:MutableList<Vehiculo> = mutableListOf<Vehiculo>()
+class Carrera(val nombreCarrera: String, val distanciaTotal: Float, var participantes:List<Vehiculo>) {
         var estadoCarrera: Boolean = false
-        var historialAcciones: MutableMap<String, MutableList<String>> = mutableMapOf<String, MutableList<String>>()
-        val posiciones: MutableList<Pair<String, Int>> = mutableListOf<Pair<String, Int>>()
-
+        var historialAcciones: MutableMap<String, MutableList<String>> = mutableMapOf()
+        val posiciones: MutableList<Pair<String, Int>> = mutableListOf()
+    init {
+        require(nombreCarrera.isNotBlank()) {"El nombre de la carrera no puede estar vacío"}
+        require(distanciaTotal > 0) {"Longitud de la carrera invalidad"}
+        for (participante in participantes) {
+            historialAcciones.put(participante.nombre, mutableListOf<String>("Entra en carrera"))
+        }
+    }
     fun iniciarCarrera(){
         estadoCarrera = true
+        println("${nombreCarrera.uppercase()} EMPIEZA")
+        while (true){
+            val turno = participantes.random()
+            while (true){
+                avanzarVehiculo(turno)
+                realizarFiligrana(turno)
+                actualizarPosiciones()
+                break
+            }
+            if (determinarGanador()) break
+        }
+        obtenerResultados()
+    }
+    fun obtenerDistancia(): Int{
+        return Random.nextInt(10,200)
     }
     fun avanzarVehiculo(vehiculo: Vehiculo){
-        vehiculo.realizaViaje(Random.nextInt(10,200))
+        var distanciaArecorrer = obtenerDistancia()
+        while (distanciaArecorrer > 0) {
+            if (vehiculo.combustibleActual == 0.0F){
+                repostarVehiculo(vehiculo)
+            }
+            val distanciaRecorrida = vehiculo.realizaViaje(distanciaArecorrer)
+            registrarAccion(vehiculo.nombre, "Avanza $distanciaRecorrida Kms")
+            distanciaArecorrer -= distanciaRecorrida.toInt()
+            if (distanciaArecorrer > 0) {
+                repostarVehiculo(vehiculo)
+            }
+            else break
+        }
     }
 
-    fun repostarVehiculo(vehiculo: Vehiculo, cantidad:Float){
-        vehiculo.repostar(cantidad)
+    fun repostarVehiculo(vehiculo: Vehiculo){
+        vehiculo.repostar()
+        registrarAccion(vehiculo.nombre, "Ha repostado")
     }
 
     fun realizarFiligrana(vehiculo: Vehiculo){
         val hacer = Random.nextBoolean()
         if (hacer){
+            if (vehiculo.combustibleActual < 5.0)
             if (vehiculo is Automovil){
                 vehiculo.realizarDerrape()
+                registrarAccion(vehiculo.nombre, "Derrapa")
             }
             else{
                 vehiculo.realizarCaballito()
+                registrarAccion(vehiculo.nombre, "Hace un caballito")
             }
         }
         else{
-            println("${vehiculo.nombre} no hizo filigrana")
+            registrarAccion(vehiculo.nombre, "No hace nada")
+
         }
     }
 
@@ -42,13 +77,14 @@ class Carrera {
         posiciones.sortBy { it.second }
     }
 
-    fun determinarGanador(){
+    fun determinarGanador(): Boolean{
         for (participante in posiciones){
-            if (participante.second == DistanciaTotal){
+            if (participante.second == distanciaTotal.toInt()){
                 println("Ha ganado: ${participante.first}")
-                break
+                return true
             }
         }
+        return false
     }
 
     fun obtenerResultados(){
@@ -62,8 +98,13 @@ class Carrera {
         }
     }
     fun registrarAccion(vehiculo: String, accion: String) {
-        for (participante in participantes) {
-            historialAcciones.put(participante.nombre, mutableListOf<String>("Entra en carrera"))
-        }
+        val evento = historialAcciones.get(vehiculo)
+        evento?.add(accion)
     }
+    fun mostrarAcciones(){
+        historialAcciones.forEach{ println("${it.key} = ${it.value}") }
+    }
+
+    data class resultados(val vehiculo: Vehiculo, val posicion: Int, val kilometraje: Int, val paradasRepostaje: Int, val historialAcciones: List<String>)
+
 }

@@ -1,11 +1,7 @@
 class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Int, val esElectrico: Boolean):Vehiculo(nombre, marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
 
     init {
-        require(nombre.isNotBlank())
-        require(marca.isNotBlank())
-        require(modelo.isNotBlank())
-        require(nombre.isNotBlank())
-        require(esElectrico || !esElectrico) {"El campo esElectrico ha de ser true o false"}
+        comprobarNombreUnico(nombre)
     }
     companion object{
         var condicionBritania: Boolean = false
@@ -19,52 +15,55 @@ class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible
                 println("Ahora todos tiene el volante a la izquierda")
             }
         }
-        const val KxL:Int = 10
+
     }
-    override fun calcularAutonomia(): Int {
+    override fun calcularAutonomia(): Float {
         if (esElectrico) {
-            return redondear(combustibleActual * (KxL+5))
+            return combustibleActual * (KILOMETROS_POR_LITRO_HIBRIDO)
         }else{
             return super.calcularAutonomia()
         }
     }
 
-    override fun realizaViaje(distancia: Int): Int {
-        val distanciaPosible = combustibleActual* KxL
+    override fun realizaViaje(distancia: Int): Float {
+
         if (esElectrico) {
+            val distanciaPosible = combustibleActual* KILOMETROS_POR_LITRO_HIBRIDO
             if (distanciaPosible > distancia) {
-                combustibleActual = ((distanciaPosible - distancia) / (KxL+5))
+                combustibleActual = ((distanciaPosible - distancia) / (KILOMETROS_POR_LITRO_HIBRIDO))
                 kilometrosActuales += distancia
-                return redondear(distanciaPosible - distancia)
+                return distancia.toFloat()
 
             } else {
                 combustibleActual = 0.0F
                 kilometrosActuales += distancia
-                return redondear(distancia - distanciaPosible).toInt()
+                return distancia - distanciaPosible
             }
         }
-        else{
-            if (distanciaPosible > distancia) {
-                combustibleActual = (distanciaPosible - distancia) / KxL
-                kilometrosActuales += distancia
-                return redondear(distanciaPosible - distancia)
-
-            } else {
-                combustibleActual = 0.0F
-                kilometrosActuales += distancia
-                return redondear(distancia - distanciaPosible)
-            }
+        else {
+            return super.realizaViaje(distancia)
         }
     }
 
+
     override fun realizarDerrape(): Float{
-        if (combustibleActual - 0.5 > 0.00){
-            combustibleActual - 0.5
-            return combustibleActual
+        if (esElectrico){
+            if (calcularAutonomia() - 6.25 > 0.00) {
+                combustibleActual - 0.417
+                return combustibleActual
+            } else {
+                println("No hay combustible suficiente para derrapar")
+                return combustibleActual
+            }
         }
-        else{
-            println("No hay combustible suficiente para derrapar")
-            return combustibleActual
+        else {
+            if (calcularAutonomia() - 7.5 > 0.00) {
+                combustibleActual - 0.75
+                return combustibleActual
+            } else {
+                println("No hay combustible suficiente para derrapar")
+                return combustibleActual
+            }
         }
     }
 
