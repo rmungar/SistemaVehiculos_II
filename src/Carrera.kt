@@ -92,8 +92,9 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
         }
         else{
             registrarAccion(vehiculo.nombre, "No hace nada")
-
+            return 0.0F
         }
+        return 0.0F
     }
 
     fun actualizarPosiciones(){
