@@ -1,4 +1,4 @@
-class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Int, val esElectrico: Boolean):Vehiculo(nombre, marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
+class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible:Float, combustibleActual: Float, kilometrosActuales: Float, val esElectrico: Boolean):Vehiculo(nombre, marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
 
     init {
         comprobarNombreUnico(nombre)
@@ -25,18 +25,25 @@ class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible
         }
     }
 
-    override fun realizaViaje(distancia: Int): Float {
-
+    override fun realizaViaje(distancia: Float): Float {
         if (esElectrico) {
-            val distanciaPosible = combustibleActual* KILOMETROS_POR_LITRO_HIBRIDO
+            val distanciaPosible = calcularAutonomia()
             if (distanciaPosible > distancia) {
                 combustibleActual = ((distanciaPosible - distancia) / (KILOMETROS_POR_LITRO_HIBRIDO))
-                kilometrosActuales += distancia
+                var distanciaAderrapar = distancia
+                if (distanciaAderrapar % 20 == 0F && distanciaAderrapar > 0){
+                    kilometrosActuales += distanciaAderrapar
+                    distanciaAderrapar-=20
+                }
                 return distancia.toFloat()
 
             } else {
                 combustibleActual = 0.0F
-                kilometrosActuales += distancia
+                var distanciaAderrapar  = distancia
+                if (distanciaAderrapar % 20 == 0F && distanciaAderrapar > 0){
+                    kilometrosActuales += distanciaAderrapar
+                    distanciaAderrapar -= 20
+                }
                 return distancia - distanciaPosible
             }
         }

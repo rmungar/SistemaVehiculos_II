@@ -1,6 +1,6 @@
 import kotlin.math.roundToInt
 
-abstract class Vehiculo (val nombre: String, val marca: String, val modelo: String, val capacidadCombustible: Float, var combustibleActual: Float, var kilometrosActuales: Int){
+abstract class Vehiculo (val nombre: String, val marca: String, val modelo: String, val capacidadCombustible: Float, var combustibleActual: Float, var kilometrosActuales: Float){
     init {
         require(comprobarNombreUnico(nombre)) {"El nombre no puede estar repetido"}
         require(marca.isNotBlank()) {"El campo de marca no puede estar vacío"}
@@ -32,12 +32,12 @@ abstract class Vehiculo (val nombre: String, val marca: String, val modelo: Stri
     open fun redondear(num: Float):Int{
         return  num.roundToInt()
     }
-    open fun realizaViaje(distancia: Int):Float {
+    open fun realizaViaje(distancia: Float):Float {
         val distanciaPosible = calcularAutonomia()
         if (distanciaPosible > distancia){
             combustibleActual = (distanciaPosible - distancia)/ KILOMETROS_POR_LITRO
             kilometrosActuales += distancia
-            return distancia.toFloat()
+            return distancia
 
         }
         else{

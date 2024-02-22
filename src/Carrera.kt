@@ -1,6 +1,6 @@
 import kotlin.random.Random
 
-class Carrera(val nombreCarrera: String, val distanciaTotal: Float, var participantes:List<Vehiculo>) {
+class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val participantes:List<Vehiculo>) {
         var estadoCarrera: Boolean = false
         var historialAcciones: MutableMap<String, MutableList<String>> = mutableMapOf()
         val posiciones: MutableList<Pair<String, Int>> = mutableListOf()
@@ -30,18 +30,22 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, var particip
         return Random.nextInt(10,200)
     }
     fun avanzarVehiculo(vehiculo: Vehiculo){
-        var distanciaArecorrer = obtenerDistancia()
-        while (distanciaArecorrer > 0) {
+        val distanciaArecorrer = obtenerDistancia()
+        var tramosArecorrer:Float = distanciaArecorrer/20F
+        val tramo = 20F
+        while (tramosArecorrer >= 1){
             if (vehiculo.combustibleActual == 0.0F){
                 repostarVehiculo(vehiculo)
             }
-            val distanciaRecorrida = vehiculo.realizaViaje(distanciaArecorrer)
+            val distanciaRecorrida = vehiculo.realizaViaje(tramo)
             registrarAccion(vehiculo.nombre, "Avanza $distanciaRecorrida Kms")
-            distanciaArecorrer -= distanciaRecorrida.toInt()
-            if (distanciaArecorrer > 0) {
-                repostarVehiculo(vehiculo)
+            if (distanciaRecorrida == tramo){
+                tramosArecorrer -= 1
+                val distanciFiligrana = realizarFiligrana(vehiculo)
             }
-            else break
+        }
+        if (tramosArecorrer in 0.1..0.99) {
+            vehiculo.realizaViaje(tramosArecorrer)
         }
     }
 
@@ -50,17 +54,40 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, var particip
         registrarAccion(vehiculo.nombre, "Ha repostado")
     }
 
-    fun realizarFiligrana(vehiculo: Vehiculo){
-        val hacer = Random.nextBoolean()
-        if (hacer){
-            if (vehiculo.combustibleActual < 5.0)
-            if (vehiculo is Automovil){
-                vehiculo.realizarDerrape()
-                registrarAccion(vehiculo.nombre, "Derrapa")
+    fun obtenerCombustibleNecesario(vehiculo: Vehiculo):Float{
+        if (vehiculo is Automovil){
+            if (vehiculo.esElectrico) return 0.417F
+            else return 0.750F
+        }
+        else if (vehiculo is Motocicleta){
+            if (vehiculo.cilindrada == 1000) return 0.650F
+            else if (vehiculo.cilindrada in 500..1000) return 0.333F
+            else return 0.339F
+        }
+        else{
+            return 0.0F
+        }
+    }
+
+    fun realizarFiligrana(vehiculo: Vehiculo):Float{
+        val combustibleNecesario = obtenerCombustibleNecesario(vehiculo)
+        if (vehiculo.combustibleActual > combustibleNecesario){
+            val hacer = Random.nextBoolean()
+            if (hacer){
+                if (vehiculo.combustibleActual < 5.0) {
+                    if (vehiculo is Automovil) {
+                        vehiculo.realizarDerrape()
+                        registrarAccion(vehiculo.nombre, "Derrapa")
+
+                    } else {
+                        vehiculo.realizarCaballito()
+                        registrarAccion(vehiculo.nombre, "Hace un caballito")
+                    }
+                }
             }
             else{
-                vehiculo.realizarCaballito()
-                registrarAccion(vehiculo.nombre, "Hace un caballito")
+                registrarAccion(vehiculo.nombre, "No hace nada")
+                return 0.0F
             }
         }
         else{
@@ -70,7 +97,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, var particip
     }
 
     fun actualizarPosiciones(){
-        val posiciones = mutableListOf<Pair<String, Int>>()
+        val posiciones = mutableListOf<Pair<String, Float>>()
         for (participante in participantes){
             posiciones.add(Pair(participante.nombre, participante.kilometrosActuales))
         }
@@ -79,7 +106,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, var particip
 
     fun determinarGanador(): Boolean{
         for (participante in posiciones){
-            if (participante.second == distanciaTotal.toInt()){
+            if (participante.second >= distanciaTotal.toInt()){
                 println("Ha ganado: ${participante.first}")
                 return true
             }
