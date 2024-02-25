@@ -36,12 +36,13 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
         println("Clasificación")
         mostrarPosiciones()
         println()
-        obtenerResultados()
+        mostrarResultados()
+        //obtenerResultados()
         repeat(2){
             println()
         }
         println("Historial detallado ->")
-        mostrarAcciones()
+        //mostrarAcciones()
     }
     fun obtenerDistancia(): Int{
         return Random.nextInt(10,200)
@@ -147,6 +148,22 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
             println(participante.obtenerInformacion())
         }
     }
+    fun obtenerParadas(participante: Vehiculo): Int{
+        var recuento = 0
+        val historial = historialAcciones.get(participante.nombre)
+        historial!!.forEach {
+                if (it == "Ha repostado") recuento++
+            }
+        return recuento
+    }
+    fun mostrarResultados(){
+       var cont = 1
+        for (participante in posiciones.sortedBy { it.kilometrosActuales }){
+            val resultado = resultados(participante, cont, participante.kilometrosActuales.toInt(),obtenerParadas(participante),historialAcciones.get(participante.nombre))
+            println(resultado)
+            cont++
+        }
+    }
     fun actualizarPosiciones(){
         posiciones.sortBy { it.kilometrosActuales }
     }
@@ -165,6 +182,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
         historialAcciones.forEach{ println("${it.key} = ${(it.value.forEach { println(it) })}") }
     }
 
-    data class resultados(val vehiculo: Vehiculo, val posicion: Int, val kilometraje: Int, val paradasRepostaje: Int, val historialAcciones: List<String>)
-
+    data class resultados(val vehiculo: Vehiculo, val posicion: Int, val kilometraje: Int, var paradasRepostaje: Int,val historialAcciones:
+    MutableList<String>?)
 }
+
