@@ -29,23 +29,17 @@ class Automovil(nombre: String,marca:String, modelo:String, capacidadCombustible
         if (esElectrico) {
             val distanciaPosible = calcularAutonomia()
             if (distanciaPosible > distancia) {
-                combustibleActual = ((distanciaPosible - distancia) / (KILOMETROS_POR_LITRO_HIBRIDO))
-                var distanciaAderrapar = distancia
-                if (distanciaAderrapar % 20 == 0F && distanciaAderrapar > 0){
-                    kilometrosActuales += distanciaAderrapar
-                    distanciaAderrapar-=20
-                }
-                return distancia.toFloat()
+                combustibleActual -= ((distanciaPosible - distancia) / (KILOMETROS_POR_LITRO_HIBRIDO))
+                kilometrosActuales += distancia
+                return 0.0F
 
             } else {
+                val distanciaRestante = distancia - distanciaPosible
+                kilometrosActuales += distanciaPosible
                 combustibleActual = 0.0F
-                var distanciaAderrapar  = distancia
-                if (distanciaAderrapar % 20 == 0F && distanciaAderrapar > 0){
-                    kilometrosActuales += distanciaAderrapar
-                    distanciaAderrapar -= 20
-                }
-                return distancia - distanciaPosible
+                return distanciaRestante
             }
+
         }
         else {
             return super.realizaViaje(distancia)

@@ -37,7 +37,7 @@ abstract class Vehiculo (val nombre: String, val marca: String, val modelo: Stri
         if (distanciaPosible > distancia){
             combustibleActual = (distanciaPosible - distancia)/ KILOMETROS_POR_LITRO
             kilometrosActuales += distancia
-            return distancia
+            return 0.0F
 
         }
         else{
