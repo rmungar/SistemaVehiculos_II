@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="676297b6-0a0e-456f-9921-af3a8d371c74" name="Changes" comment="arreglar las filigranas- (SIN COMENTAR)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Automovil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Automovil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Carrera.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrera.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vehiculo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vehiculo.kt" afterDir="false" />
-    </list>
+    <list default="true" id="676297b6-0a0e-456f-9921-af3a8d371c74" name="Changes" comment="Por comentar" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="rmungar &lt;mgraul@iesrafaelalberti.es&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -96,7 +96,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708541068418</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Por comentar">
+      <option name="closed" value="true" />
+      <created>1708885200847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708885200847</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Por comentar">
+      <option name="closed" value="true" />
+      <created>1708885230420</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1708885230420</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -104,7 +120,9 @@
     <MESSAGE value="terminado - (SIN COMENTAR)" />
     <MESSAGE value="continuar con carrera - (SIN COMENTAR)" />
     <MESSAGE value="arreglar las filigranas- (SIN COMENTAR)" />
-    <option name="LAST_COMMIT_MESSAGE" value="arreglar las filigranas- (SIN COMENTAR)" />
+    <MESSAGE value="arreglar las filigranas - (SIN COMENTAR) - USA REPEAT()" />
+    <MESSAGE value="Por comentar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Por comentar" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
