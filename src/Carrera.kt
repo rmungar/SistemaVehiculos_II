@@ -26,6 +26,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
         while (true){
             val turno = participantes.random()
             while (true){
+                obtenerCajaSorpresa(turno)
                 avanzarVehiculo(turno)
                 actualizarPosiciones()
                 break
@@ -37,7 +38,6 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
         mostrarPosiciones()
         println()
         mostrarResultados()
-        //obtenerResultados()
         repeat(2){
             println()
         }
@@ -127,6 +127,48 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
     }
 
 
+    fun obtenerCajaSorpresa(vehiculo: Vehiculo){
+        val powerup = Random.nextInt(0,8)
+        val item = CajaSorpresa.entries[powerup]
+        when (item){
+            CajaSorpresa.SUMAR10 -> { if (vehiculo.kilometrosActuales + 10 > distanciaTotal) {
+                                            vehiculo.kilometrosActuales = distanciaTotal
+                                            registrarAccion(vehiculo.nombre, "Avanzó hasta el final")
+                                    }
+                                    else {
+                                            vehiculo.kilometrosActuales += 10F
+                                            registrarAccion(vehiculo.nombre, "Avanzó 10 km")
+                                    }
+            }
+            CajaSorpresa.TP -> {if (vehiculo.kilometrosActuales + 100 > distanciaTotal){
+                                    vehiculo.kilometrosActuales = distanciaTotal
+                                    registrarAccion(vehiculo.nombre, "Avanzó hasta el final")
+                                }
+                                else {
+                                    vehiculo.kilometrosActuales += 100F
+                                    registrarAccion(vehiculo.nombre, "Avanzó 100 km")
+                                }
+            }
+            CajaSorpresa.CASILLAINICIO -> vehiculo.kilometrosActuales = 0F
+            CajaSorpresa.RETRASAR -> for (participante in participantes){
+                                        if (participante.nombre != vehiculo.nombre) {
+                                            if (participante.kilometrosActuales - 100 > 0) {
+                                                participante.kilometrosActuales -= 100F
+                                                registrarAccion(participante.nombre, "Retrocedió 100 km")
+                                            }
+                                            else{ participante.kilometrosActuales = 0F
+                                                registrarAccion(participante.nombre, "No pudo retroceder más")
+                                            }
+                                        }
+            }
+            CajaSorpresa.ALINICIO -> for (participante in participantes) {
+                                        participante.kilometrosActuales = 0F
+                                        registrarAccion(participante.nombre, "Volvió al inicio")
+            }
+            CajaSorpresa.VACIO1,CajaSorpresa.VACIO2,CajaSorpresa.VACIO3,CajaSorpresa.VACIO4 -> registrarAccion(vehiculo.nombre, "La caja no hizo nada")
+        }
+    }
+
 
     fun determinarGanador(): Boolean{
         for (participante in participantes){
@@ -144,7 +186,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
             resultados.add(participante)
         }
         resultados.sortBy { it.kilometrosActuales }
-        for (participante in resultados){
+        for (participante in resultados.reversed()){
             println(participante.obtenerInformacion())
         }
     }
@@ -158,9 +200,9 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
     }
     fun mostrarResultados(){
        var cont = 1
-        for (participante in posiciones.sortedBy { it.kilometrosActuales }){
+        for (participante in posiciones.sortedBy { it.kilometrosActuales }.reversed()){
             val resultado = resultados(participante, cont, participante.kilometrosActuales.toInt(),obtenerParadas(participante),historialAcciones.get(participante.nombre))
-            println(resultado)
+            println(resultado.toString())
             cont++
         }
     }
@@ -183,6 +225,10 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
     }
 
     data class resultados(val vehiculo: Vehiculo, val posicion: Int, val kilometraje: Int, var paradasRepostaje: Int,val historialAcciones:
-    MutableList<String>?)
+    MutableList<String>?){
+        override fun toString(): String {
+            return "Vehículo = ${vehiculo.nombre}, posición = $posicion, kilometraje = $kilometraje, paradas = $paradasRepostaje, historial de acciones = $historialAcciones"
+        }
+    }
 }
 
