@@ -211,7 +211,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
     }
     fun mostrarPosiciones(){
         var cont = 1
-        posiciones.forEach {
+        posiciones.reversed().forEach {
             println("$cont -> ${it.nombre}")
             cont++
         }
@@ -227,7 +227,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
     data class resultados(val vehiculo: Vehiculo, val posicion: Int, val kilometraje: Int, var paradasRepostaje: Int,val historialAcciones:
     MutableList<String>?){
         override fun toString(): String {
-            return "Vehículo = ${vehiculo.nombre}, posición = $posicion, kilometraje = $kilometraje, paradas = $paradasRepostaje, historial de acciones = $historialAcciones"
+            return "Vehículo = ${vehiculo.nombre}, posición = $posicion, kilometraje = $kilometraje, paradas = $paradasRepostaje"
         }
     }
 }

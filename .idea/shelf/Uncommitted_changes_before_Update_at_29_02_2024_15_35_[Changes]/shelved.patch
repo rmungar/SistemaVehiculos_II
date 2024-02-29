@@ -1,0 +1,61 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"676297b6-0a0e-456f-9921-af3a8d371c74\" name=\"Changes\" comment=\"arreglar las filigranas- (SIN COMENTAR)\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Automovil.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Automovil.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Carrera.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Carrera.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Motocicleta.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Motocicleta.kt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Vehiculo.kt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Vehiculo.kt\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Kotlin Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2cPnBJVZ0tSRzFZYw4QMj3cwoSc\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Kotlin.MainKt.executor\": \"Debug\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"settings.editor.selected.configurable\": \"preferences.keymap\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"676297b6-0a0e-456f-9921-af3a8d371c74\" name=\"Changes\" comment=\"\" />\r\n      <created>1708021944680</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1708021944680</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"continuar\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708028828806</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708028828806</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"terminado - (SIN COMENTAR)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708370652537</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708370652537</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"continuar con carrera - (SIN COMENTAR)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708374428413</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708374428413</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"continuar con carrera - (SIN COMENTAR)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708374675664</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708374675664</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"arreglar las filigranas- (SIN COMENTAR)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708541068418</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708541068418</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"continuar\" />\r\n    <MESSAGE value=\"terminado - (SIN COMENTAR)\" />\r\n    <MESSAGE value=\"continuar con carrera - (SIN COMENTAR)\" />\r\n    <MESSAGE value=\"arreglar las filigranas- (SIN COMENTAR)\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"arreglar las filigranas- (SIN COMENTAR)\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <watches-manager>\r\n      <configuration name=\"JetRunConfigurationType\">\r\n        <watch expression=\"vehiculo\" />\r\n      </configuration>\r\n    </watches-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision a8b80ea058f90aecac8f6ac23050fc3c7c5c974d)
++++ b/.idea/workspace.xml	(date 1708634014462)
+@@ -4,13 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="676297b6-0a0e-456f-9921-af3a8d371c74" name="Changes" comment="arreglar las filigranas- (SIN COMENTAR)">
++    <list default="true" id="676297b6-0a0e-456f-9921-af3a8d371c74" name="Changes" comment="arreglar las filigranas - (SIN COMENTAR) - USA REPEAT()">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Automovil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Automovil.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Carrera.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carrera.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Motocicleta.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Motocicleta.kt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Vehiculo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vehiculo.kt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -105,7 +100,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1708541068418</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="arreglar las filigranas - (SIN COMENTAR)">
++      <option name="closed" value="true" />
++      <created>1708633170977</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1708633170977</updated>
++    </task>
++    <task id="LOCAL-00007" summary="arreglar las filigranas - (SIN COMENTAR) - USA REPEAT()">
++      <option name="closed" value="true" />
++      <created>1708633598330</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1708633598330</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+@@ -113,7 +124,9 @@
+     <MESSAGE value="terminado - (SIN COMENTAR)" />
+     <MESSAGE value="continuar con carrera - (SIN COMENTAR)" />
+     <MESSAGE value="arreglar las filigranas- (SIN COMENTAR)" />
+-    <option name="LAST_COMMIT_MESSAGE" value="arreglar las filigranas- (SIN COMENTAR)" />
++    <MESSAGE value="arreglar las filigranas - (SIN COMENTAR)" />
++    <MESSAGE value="arreglar las filigranas - (SIN COMENTAR) - USA REPEAT()" />
++    <option name="LAST_COMMIT_MESSAGE" value="arreglar las filigranas - (SIN COMENTAR) - USA REPEAT()" />
+   </component>
+   <component name="XDebuggerManager">
+     <watches-manager>
